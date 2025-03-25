@@ -1,46 +1,306 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Vite App</title>
+    <title>St-Martin joue - Soirées jeux de société</title>
   </head>
 
-  <body
-    class="m-0 flex min-h-screen min-w-[320px] place-items-center bg-[#ffffff] font-inter text-base font-normal text-[#213547] dark:bg-[#242424] dark:text-transparent-white"
-  >
-    <div
-      class="mx-auto flex max-w-[1280px] flex-col items-center justify-center p-8"
-    >
-      <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-        <img
-          src="./vite.svg"
-          class="h-24 p-5 will-change-[filter] hover:drop-shadow-logo"
-          alt="Vite logo"
-        />
+  <body class="bg-amber-50 text-gray-800 font-sans">
+  <!-- Header plus chaleureux -->
+  <header class="fixed w-full z-50 bg-white/90 shadow-md transition-all duration-300">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <a href="#" class="flex items-center group animate-slide-in">
+        <img src="img/logo.png" alt="Logo St-Martin joue" class="h-12 w-12 md:h-16 md:w-16 mr-3 md:mr-4 transform transition-transform duration-300 group-hover:scale-110">
+        <h1 class="text-2xl md:text-3xl font-extrabold text-amber-600">St-Martin joue</h1>
       </a>
-      <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
-        <img
-          src="./tailwindcss.svg"
-          class="h-18 w-auto p-5 will-change-[filter] hover:drop-shadow-logo-tw"
-          alt="TailwindCSS logo"
-        />
-      </a>
-      <h1
-        class="my-12 bg-linear-to-r from-green-400 to-blue-500 bg-clip-text p-4 text-6xl text-transparent"
-      >
-        Hello Vite!
-      </h1>
-      <div class="card">
-        <button id="counter" type="button"></button>
-      </div>
-      <div class="text-gray-600 flex flex-row gap-3 items-center">
-        Built with love by
-        <a href="https://kometo.co/?utm_source=vite-tailwind-nojs-starter" target="_blank" rel="noopener noreferrer"
-          title="KometoLabs" class="shadow-xs"><img class="inline" src="/img/kometo.png" alt="KometoLabs logo" /></a>
+      <!-- Bouton hamburger -->
+      <button id="menu-toggle" class="md:hidden text-amber-600 hover:text-amber-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <!-- Navigation -->
+      <nav id="main-nav" aria-label="Navigation principale" class="fixed md:relative top-0 right-0 w-full md:w-auto h-screen md:h-auto bg-white/95 md:bg-transparent transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col h-full md:h-auto pt-20 md:pt-0">
+          <ul class="flex flex-col md:flex-row md:space-x-8 text-base md:text-lg px-4 md:px-0">
+            <li class="my-4 md:my-0"><a href="#about" class="hover:text-amber-600 transition-colors duration-300">À propos</a></li>
+            <li class="my-4 md:my-0"><a href="#events" class="hover:text-amber-600 transition-colors duration-300">Nos soirées</a></li>
+            <li class="my-4 md:my-0"><a href="#membership" class="hover:text-amber-600 transition-colors duration-300">Adhésion</a></li>
+            <li class="my-4 md:my-0"><a href="#contact" class="hover:text-amber-600 transition-colors duration-300">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Script pour le menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mainNav = document.getElementById('main-nav');
+      
+      menuToggle.addEventListener('click', function(event) {
+        event.stopPropagation();
+        if (mainNav.classList.contains('translate-x-full')) {
+          mainNav.classList.remove('translate-x-full');
+        } else {
+          mainNav.classList.add('translate-x-full');
+        }
+      });
+
+      // Fermer le menu quand on clique sur un lien
+      const navLinks = mainNav.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mainNav.classList.add('translate-x-full');
+        });
+      });
+
+      // Fermer le menu quand on clique en dehors
+      document.addEventListener('click', function(event) {
+        if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
+          mainNav.classList.add('translate-x-full');
+        }
+      });
+    });
+  </script>
+
+  <!-- Hero Section plus conviviale -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="img/header.webp" alt="Ambiance chaleureuse d'une soirée jeux" 
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-amber-900/40 to-amber-900/60"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div class="text-5xl md:text-6xl mb-4 animate-bounce">🎲</div>
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in">
+        JOUEZ, PARTAGEZ, DÉCOUVREZ !
+      </h2>
+      <p class="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 animate-fade-in-delay">
+        Le plaisir de jouer ensemble à St-Martin-de-l'If
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-delay">
+        <a href="#events" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+          Découvrir nos soirées
+        </a>
+        <a href="#membership" class="inline-block bg-white/20 hover:bg-white/30 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+          Devenir membre
+        </a>
       </div>
     </div>
-  </body>
+    <!-- Flèche de scroll -->
+    <a href="#about" class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 hover:text-white transition-colors duration-300 animate-bounce">
+      <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+  </section>
+
+  <main class="container mx-auto px-4 py-8 md:py-16">
+    <!-- Section Bienvenue -->
+    <section id="about" class="mb-12 md:mb-20 pt-20 md:pt-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="text-3xl md:text-4xl mb-4">👋</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">Bienvenue à St-Martin joue !</h2>
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100">
+          <p class="text-base md:text-lg leading-relaxed text-gray-700">
+            Passionnés de jeux ou simples curieux ? St-Martin joue vous ouvre ses portes ! Notre association réunit chaque mois des joueurs de tous horizons dans une ambiance conviviale et bienveillante. Que vous soyez expert ou débutant, jeune ou moins jeune, venez partager des moments ludiques inoubliables autour de jeux de société modernes et variés.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Nos soirées jeux -->
+    <section id="events" class="mb-12 md:mb-20 pt-20 md:pt-24">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-3xl md:text-4xl mb-4 text-center">♟️</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-6 md:mb-8 text-center animate-fade-in">Nos soirées jeux</h2>
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+            <div class="text-center p-3 md:p-4">
+              <div class="text-3xl md:text-4xl mb-2">📅</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Quand ?</h3>
+              <p class="text-sm md:text-base">Le dernier vendredi de chaque mois</p>
+            </div>
+            <div class="text-center p-3 md:p-4">
+              <div class="text-3xl md:text-4xl mb-2">👥</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Pour qui ?</h3>
+              <p class="text-sm md:text-base">Tous les âges, tous les niveaux</p>
+            </div>
+            <div class="text-center p-3 md:p-4">
+              <div class="text-3xl md:text-4xl mb-2">🎲</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Quels jeux ?</h3>
+              <p class="text-sm md:text-base">Une sélection variée et renouvelée</p>
+            </div>
+          </div>
+          
+          <div class="border-t border-amber-100 pt-4 md:pt-6">
+            <h3 class="text-xl md:text-2xl font-semibold mb-4 text-amber-700">Notre sélection de jeux</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+              <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-lg">
+                <span class="text-xl md:text-2xl">😄</span>
+                <p class="text-sm md:text-base">Jeux d'ambiance pour rire ensemble</p>
+              </div>
+              <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-lg">
+                <span class="text-xl md:text-2xl">👨‍👩‍👧‍👦</span>
+                <p class="text-sm md:text-base">Jeux familiaux accessibles à tous</p>
+              </div>
+              <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-lg">
+                <span class="text-xl md:text-2xl">🧠</span>
+                <p class="text-sm md:text-base">Jeux de stratégie pour les amateurs de défis</p>
+              </div>
+              <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-lg">
+                <span class="text-xl md:text-2xl">✨</span>
+                <p class="text-sm md:text-base">Dernières nouveautés du monde ludique</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Informations pratiques -->
+    <section id="practical" class="mb-12 md:mb-20 pt-20 md:pt-24">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-3xl md:text-4xl mb-4 text-center">ℹ️</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-6 md:mb-8 text-center animate-fade-in">Informations pratiques</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100 flex flex-col items-center justify-between h-full">
+            <div>
+              <div class="text-3xl md:text-4xl mb-4">📍</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-3">Où nous trouver ?</h3>
+              <p class="text-sm md:text-base text-gray-700">Salle de la résidence pour personnes âgées, route de Croix-Mare, St-Martin-de-l'If (Seine-Maritime)</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100 flex flex-col items-center justify-between h-full">
+            <div>
+              <div class="text-3xl md:text-4xl mb-4">🕒</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-3">Quand venir ?</h3>
+              <p class="text-sm md:text-base text-gray-700">Dernier vendredi du mois, de 20h à minuit</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100 flex flex-col items-center justify-between h-full">
+            <div>
+              <div class="text-3xl md:text-4xl mb-4">🎁</div>
+              <h3 class="text-lg md:text-xl font-semibold mb-3">Première visite ?</h3>
+              <p class="text-amber-600 font-bold text-sm md:text-base">C'est GRATUIT !</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Adhésion -->
+    <section id="membership" class="mb-12 md:mb-20 pt-20 md:pt-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="text-3xl md:text-4xl mb-4">🤝</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">Devenir membre</h2>
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100">
+          <p class="text-xl md:text-2xl font-bold text-amber-600 mb-4 md:mb-6">Adhésion annuelle : 20€</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-xl md:text-2xl mb-2">🎲</div>
+              <p class="text-sm md:text-base">Accès à toutes les soirées jeux</p>
+            </div>
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-xl md:text-2xl mb-2">📚</div>
+              <p class="text-sm md:text-base">Bibliothèque de jeux entre les événements</p>
+            </div>
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-xl md:text-2xl mb-2">💎</div>
+              <p class="text-sm md:text-base">Tarifs préférentiels sur les événements spéciaux</p>
+            </div>
+          </div>
+          <div class="mt-6 md:mt-8">
+            <iframe id="haWidget" allowtransparency="true" scrolling="auto" 
+                    src="https://www.helloasso.com/associations/st-martin-joue/adhesions/adhesion/widget" 
+                    class="w-full h-[600px] md:h-[750px] border-none rounded-lg shadow-lg"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="mb-12 md:mb-20 pt-20 md:pt-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="text-3xl md:text-4xl mb-4">📬</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">Contactez-nous !</h2>
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-3xl md:text-4xl mb-2">📧</div>
+              <p class="font-semibold text-sm md:text-base">Email</p>
+              <a href="mailto:stmartinjoue@gmail.com" class="text-amber-600 hover:text-amber-700 text-sm md:text-base">
+                stmartinjoue@gmail.com
+              </a>
+            </div>
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-3xl md:text-4xl mb-2">📞</div>
+              <p class="font-semibold text-sm md:text-base">Téléphone</p>
+              <a href="tel:0688144084" class="text-amber-600 hover:text-amber-700 text-sm md:text-base">
+                06 88 14 40 84
+              </a>
+            </div>
+            <div class="p-3 md:p-4 bg-amber-50 rounded-lg">
+              <div class="text-3xl md:text-4xl mb-2">📱</div>
+              <p class="font-semibold text-sm md:text-base">Facebook</p>
+              <a href="https://www.facebook.com/stmartinjoue" target="_blank" rel="noopener noreferrer" 
+                 class="text-amber-600 hover:text-amber-700 text-sm md:text-base">
+                St-Martin joue
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section CTA finale -->
+    <section class="mb-12 md:mb-20 text-center">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-5xl md:text-6xl mb-4 animate-bounce">🎲</div>
+        <h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">À VOS DÉS, PRÊTS, JOUEZ !</h2>
+        <p class="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 animate-fade-in-delay">
+          N'attendez plus pour vivre l'expérience St-Martin joue ! Rejoignez notre communauté ludique et transformez votre dernier vendredi du mois en moment de partage et de découverte.
+        </p>
+        <div class="bg-amber-500 text-white rounded-2xl p-4 md:p-6 border-2 border-amber-400">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Prochaine soirée</h3>
+          <p class="text-lg md:text-xl">Vendredi 28 mars à 20h</p>
+          <p class="text-base md:text-lg mt-2">Salle de la résidence pour personnes âgées, route de Croix-Mare, St-Martin-de-l'If (Seine-Maritime)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer plus chaleureux -->
+  <footer class="bg-amber-800 text-white">
+    <div class="container mx-auto px-4 py-8 md:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="text-center animate-fade-in">
+          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Contact</h3>
+          <a href="mailto:stmartinjoue@gmail.com" class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base">
+            stmartinjoue@gmail.com
+          </a>
+        </div>
+        <div class="text-center animate-fade-in-delay">
+          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Suivez-nous</h3>
+          <a href="https://www.facebook.com/stmartinjoue" target="_blank" rel="noopener noreferrer" 
+             class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base">
+            Page Facebook
+          </a>
+        </div>
+        <div class="text-center animate-fade-in-delay">
+          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Informations</h3>
+          <p class="text-sm md:text-base">Association loi 1901</p>
+        </div>
+      </div>
+      <div class="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-amber-700 text-center text-xs md:text-sm">
+        <p>&copy; 2024 St-Martin joue. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
