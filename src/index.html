@@ -2,34 +2,54 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="St-Martin joue - Association de jeux de société à St-Martin-de-l'If (Seine-Maritime). Soirées jeux mensuelles, adhésion annuelle, communauté ludique conviviale." />
+    <meta name="keywords" content="jeux de société, association jeux, St-Martin-de-l'If, soirées jeux, jeux de société Seine-Maritime, club de jeux" />
+    <meta name="author" content="St-Martin joue" />
+    <meta name="robots" content="index, follow" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://stmartinjoue.fr/" />
+    <meta property="og:title" content="St-Martin joue - Soirées jeux de société à St-Martin-de-l'If" />
+    <meta property="og:description" content="Rejoignez notre association de jeux de société pour des soirées conviviales mensuelles à St-Martin-de-l'If. Tous les âges, tous les niveaux !" />
+    <meta property="og:image" content="/img/header.webp" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://stmartinjoue.fr/" />
+    <meta property="twitter:title" content="St-Martin joue - Soirées jeux de société à St-Martin-de-l'If" />
+    <meta property="twitter:description" content="Rejoignez notre association de jeux de société pour des soirées conviviales mensuelles à St-Martin-de-l'If. Tous les âges, tous les niveaux !" />
+    <meta property="twitter:image" content="/img/header.webp" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://stmartinjoue.fr/" />
     <link rel="stylesheet" href="/style.css" />
-    <title>St-Martin joue - Soirées jeux de société</title>
+    <title>St-Martin joue - Soirées jeux de société à St-Martin-de-l'If (Seine-Maritime)</title>
   </head>
 
   <body class="bg-amber-50 text-gray-800 font-sans">
   <!-- Header plus chaleureux -->
-  <header class="fixed w-full z-50 bg-white/90 shadow-md transition-all duration-300">
+  <header class="fixed w-full z-50 bg-white/90 shadow-md transition-all duration-300" role="banner">
     <div class="container mx-auto flex items-center justify-between p-4">
-      <a href="#" class="flex items-center group animate-slide-in">
-        <img src="img/logo.png" alt="Logo St-Martin joue" class="h-12 w-12 md:h-16 md:w-16 mr-3 md:mr-4 transform transition-transform duration-300 group-hover:scale-110">
+      <a href="#" class="flex items-center group animate-slide-in" aria-label="Retour à l'accueil">
+        <img src="img/logo.png" alt="Logo St-Martin joue" class="h-12 w-12 md:h-16 md:w-16 mr-3 md:mr-4 transform transition-transform duration-300 group-hover:scale-110" width="64" height="64">
         <h1 class="text-2xl md:text-3xl font-extrabold text-amber-600">St-Martin joue</h1>
       </a>
       <!-- Bouton hamburger -->
-      <button id="menu-toggle" class="md:hidden text-amber-600 hover:text-amber-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      <button id="menu-toggle" class="md:hidden text-amber-600 hover:text-amber-700 focus:outline-none fixed right-4 z-[60]" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="menu-line-1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path class="menu-line-2 hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
       <!-- Navigation -->
-      <nav id="main-nav" aria-label="Navigation principale" class="fixed md:relative top-0 right-0 w-full md:w-auto h-screen md:h-auto bg-white/95 md:bg-transparent transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+      <nav id="main-nav" aria-label="Navigation principale" class="fixed md:relative top-0 right-0 w-full md:w-auto h-screen md:h-auto bg-white/95 md:bg-transparent transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
         <div class="flex flex-col h-full md:h-auto pt-20 md:pt-0">
-          <ul class="flex flex-col md:flex-row md:space-x-8 text-base md:text-lg px-4 md:px-0">
-            <li class="my-4 md:my-0"><a href="#about" class="hover:text-amber-600 transition-colors duration-300">À propos</a></li>
-            <li class="my-4 md:my-0"><a href="#events" class="hover:text-amber-600 transition-colors duration-300">Nos soirées</a></li>
-            <li class="my-4 md:my-0"><a href="#membership" class="hover:text-amber-600 transition-colors duration-300">Adhésion</a></li>
-            <li class="my-4 md:my-0"><a href="#contact" class="hover:text-amber-600 transition-colors duration-300">Contact</a></li>
+          <ul class="flex flex-col md:flex-row md:space-x-8 text-base md:text-lg px-4 md:px-0" role="menubar">
+            <li class="my-4 md:my-0" role="none"><a href="#about" class="hover:text-amber-600 transition-colors duration-300" role="menuitem">À propos</a></li>
+            <li class="my-4 md:my-0" role="none"><a href="#events" class="hover:text-amber-600 transition-colors duration-300" role="menuitem">Nos soirées</a></li>
+            <li class="my-4 md:my-0" role="none"><a href="#membership" class="hover:text-amber-600 transition-colors duration-300" role="menuitem">Adhésion</a></li>
+            <li class="my-4 md:my-0" role="none"><a href="#contact" class="hover:text-amber-600 transition-colors duration-300" role="menuitem">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -41,9 +61,18 @@
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.getElementById('menu-toggle');
       const mainNav = document.getElementById('main-nav');
+      const menuLine1 = menuToggle.querySelector('.menu-line-1');
+      const menuLine2 = menuToggle.querySelector('.menu-line-2');
       
       menuToggle.addEventListener('click', function(event) {
         event.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        
+        // Toggle des icônes
+        menuLine1.classList.toggle('hidden');
+        menuLine2.classList.toggle('hidden');
+        
         if (mainNav.classList.contains('translate-x-full')) {
           mainNav.classList.remove('translate-x-full');
         } else {
@@ -56,6 +85,10 @@
       navLinks.forEach(link => {
         link.addEventListener('click', function() {
           mainNav.classList.add('translate-x-full');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          // Réinitialiser l'icône
+          menuLine1.classList.remove('hidden');
+          menuLine2.classList.add('hidden');
         });
       });
 
@@ -63,21 +96,25 @@
       document.addEventListener('click', function(event) {
         if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
           mainNav.classList.add('translate-x-full');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          // Réinitialiser l'icône
+          menuLine1.classList.remove('hidden');
+          menuLine2.classList.add('hidden');
         }
       });
     });
   </script>
 
   <!-- Hero Section plus conviviale -->
-  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+  <section class="relative h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-title">
     <div class="absolute inset-0">
       <img src="img/header.webp" alt="Ambiance chaleureuse d'une soirée jeux" 
-           class="w-full h-full object-cover">
+           class="w-full h-full object-cover" width="1920" height="1080">
       <div class="absolute inset-0 bg-gradient-to-b from-amber-900/40 to-amber-900/60"></div>
     </div>
     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-      <div class="text-5xl md:text-6xl mb-4 animate-bounce">🎲</div>
-      <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in">
+      <div class="text-5xl md:text-6xl mb-4 animate-bounce" aria-hidden="true">🎲</div>
+      <h2 id="hero-title" class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in">
         JOUEZ, PARTAGEZ, DÉCOUVREZ !
       </h2>
       <p class="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 animate-fade-in-delay">
@@ -100,12 +137,12 @@
     </a>
   </section>
 
-  <main class="container mx-auto px-4 py-8 md:py-16">
+  <main class="container mx-auto px-4 py-8 md:py-16" role="main">
     <!-- Section Bienvenue -->
-    <section id="about" class="mb-12 md:mb-20 pt-20 md:pt-24">
+    <section id="about" class="mb-12 md:mb-20 pt-20 md:pt-24" aria-labelledby="about-title">
       <div class="max-w-3xl mx-auto text-center">
-        <div class="text-3xl md:text-4xl mb-4">👋</div>
-        <h2 class="text-2xl md:text-3xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">Bienvenue à St-Martin joue !</h2>
+        <div class="text-3xl md:text-4xl mb-4" aria-hidden="true">👋</div>
+        <h2 id="about-title" class="text-2xl md:text-3xl font-bold text-amber-800 mb-4 md:mb-6 animate-fade-in">Bienvenue à St-Martin joue !</h2>
         <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border-2 border-amber-100">
           <p class="text-base md:text-lg leading-relaxed text-gray-700">
             Passionnés de jeux ou simples curieux ? St-Martin joue vous ouvre ses portes ! Notre association réunit chaque mois des joueurs de tous horizons dans une ambiance conviviale et bienveillante. Que vous soyez expert ou débutant, jeune ou moins jeune, venez partager des moments ludiques inoubliables autour de jeux de société modernes et variés.
@@ -276,19 +313,19 @@
   </main>
 
   <!-- Footer plus chaleureux -->
-  <footer class="bg-amber-800 text-white">
+  <footer class="bg-amber-800 text-white" role="contentinfo">
     <div class="container mx-auto px-4 py-8 md:py-12">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <div class="text-center animate-fade-in">
           <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Contact</h3>
-          <a href="mailto:stmartinjoue@gmail.com" class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base">
+          <a href="mailto:stmartinjoue@gmail.com" class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base" aria-label="Envoyer un email à stmartinjoue@gmail.com">
             stmartinjoue@gmail.com
           </a>
         </div>
         <div class="text-center animate-fade-in-delay">
           <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">Suivez-nous</h3>
           <a href="https://www.facebook.com/stmartinjoue" target="_blank" rel="noopener noreferrer" 
-             class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base">
+             class="hover:text-amber-300 transition-colors duration-300 text-sm md:text-base" aria-label="Visiter notre page Facebook (nouvelle fenêtre)">
             Page Facebook
           </a>
         </div>
@@ -298,7 +335,7 @@
         </div>
       </div>
       <div class="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-amber-700 text-center text-xs md:text-sm">
-        <p>&copy; 2024 St-Martin joue. Tous droits réservés.</p>
+        <p>&copy; 2025 St-Martin joue. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
