@@ -1,7 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f4e57968-eb20-4de8-91c4-001474804566/deploy-status)](https://app.netlify.com/sites/frolicking-kitten-1d5828/deploys)
+# Vite TailwindCSS NoJS Starter
 
-Vite TailwindCSS NoJS Starter
-====
 Scaffold a new project with Vite and Tailwind CSS preconfigured with ease.
 
 ## Motivation
