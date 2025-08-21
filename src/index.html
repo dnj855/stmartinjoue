@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://www.helloasso.com" />
+    <link rel="dns-prefetch" href="https://www.helloasso.com" />
     <!-- SEO Meta Tags -->
     <meta
       name="description"
@@ -42,6 +45,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://stmartinjoue.fr/" />
     <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/main.js" defer></script>
     <title>
       St-Martin joue - Soirées jeux de société à St-Martin-de-l'If
       (Seine-Maritime)
@@ -153,140 +157,6 @@
       </div>
     </header>
 
-    <!-- Script pour le menu -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-        const mainNav = document.getElementById("main-nav");
-        const menuLine1 = menuToggle.querySelector(".menu-line-1");
-        const menuLine2 = menuToggle.querySelector(".menu-line-2");
-
-        menuToggle.addEventListener("click", function (event) {
-          event.stopPropagation();
-          const isExpanded =
-            menuToggle.getAttribute("aria-expanded") === "true";
-          menuToggle.setAttribute("aria-expanded", !isExpanded);
-
-          // Toggle des icônes
-          menuLine1.classList.toggle("hidden");
-          menuLine2.classList.toggle("hidden");
-
-          if (mainNav.classList.contains("translate-x-full")) {
-            mainNav.classList.remove("translate-x-full");
-          } else {
-            mainNav.classList.add("translate-x-full");
-          }
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        const navLinks = mainNav.querySelectorAll("a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mainNav.classList.add("translate-x-full");
-            menuToggle.setAttribute("aria-expanded", "false");
-            // Réinitialiser l'icône
-            menuLine1.classList.remove("hidden");
-            menuLine2.classList.add("hidden");
-          });
-        });
-
-        // Fermer le menu quand on clique en dehors
-        document.addEventListener("click", function (event) {
-          if (
-            !mainNav.contains(event.target) &&
-            !menuToggle.contains(event.target)
-          ) {
-            mainNav.classList.add("translate-x-full");
-            menuToggle.setAttribute("aria-expanded", "false");
-            // Réinitialiser l'icône
-            menuLine1.classList.remove("hidden");
-            menuLine2.classList.add("hidden");
-          }
-        });
-      });
-
-      // Calcul automatique de la prochaine date de soirée
-      document.addEventListener("DOMContentLoaded", function() {
-        function getNextEventDate() {
-          const today = new Date();
-          let currentMonth = today.getMonth();
-          let currentYear = today.getFullYear();
-          
-          // Fonction pour obtenir le dernier vendredi d'un mois donné
-          function getLastFriday(year, month) {
-            // Créer une date au dernier jour du mois
-            const lastDay = new Date(year, month + 1, 0);
-            const dayOfWeek = lastDay.getDay();
-            
-            // Calculer le nombre de jours à soustraire pour obtenir le dernier vendredi
-            // Vendredi = 5, donc si le dernier jour est vendredi (5), on le garde
-            // Sinon, on recule jusqu'au vendredi précédent
-            const daysToSubtract = (dayOfWeek + 2) % 7;
-            const lastFriday = new Date(lastDay);
-            lastFriday.setDate(lastDay.getDate() - daysToSubtract);
-            
-            return lastFriday;
-          }
-          
-          // Chercher la prochaine date valide
-          let nextEventDate = null;
-          let monthsChecked = 0;
-          
-          while (!nextEventDate && monthsChecked < 12) {
-            // Passer juillet (6) et août (7)
-            if (currentMonth === 6 || currentMonth === 7) {
-              currentMonth++;
-              if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-              }
-              monthsChecked++;
-              continue;
-            }
-            
-            const lastFriday = getLastFriday(currentYear, currentMonth);
-            
-            // Si c'est dans le futur ou aujourd'hui après 20h, c'est notre prochaine date
-            if (lastFriday > today || 
-                (lastFriday.toDateString() === today.toDateString() && today.getHours() < 20)) {
-              nextEventDate = lastFriday;
-            } else {
-              // Passer au mois suivant
-              currentMonth++;
-              if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-              }
-            }
-            monthsChecked++;
-          }
-          
-          // Formater la date en français
-          if (nextEventDate) {
-            const options = { 
-              weekday: 'long', 
-              day: 'numeric', 
-              month: 'long'
-            };
-            const formatter = new Intl.DateTimeFormat('fr-FR', options);
-            const formattedDate = formatter.format(nextEventDate);
-            
-            // Capitaliser la première lettre
-            const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-            
-            // Mettre à jour l'élément HTML
-            const dateElement = document.getElementById('next-event-date');
-            if (dateElement) {
-              dateElement.textContent = capitalizedDate + ' à 20h';
-            }
-          }
-        }
-        
-        // Calculer et afficher la date
-        getNextEventDate();
-      });
-    </script>
-
     <!-- Hero Section moderne et dynamique -->
     <section
       class="relative flex min-h-screen items-center justify-center overflow-hidden"
@@ -300,6 +170,7 @@
           class="h-full w-full object-cover"
           width="1920"
           height="1080"
+          fetchpriority="high"
         />
         <div
           class="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-orange-900/50"
@@ -859,7 +730,6 @@
                   Empruntez des jeux entre les soirées
                 </p>
               </div>
-
             </div>
 
             <!-- Widget HelloAsso avec style moderne -->
@@ -908,7 +778,6 @@
                 <p class="font-semibold break-all text-purple-600">
                   stmartinjoue@gmail.com
                 </p>
-               
               </a>
             </div>
 
@@ -1064,7 +933,10 @@
                 class="badge-modern mb-6 inline-block bg-white/20 text-white"
                 >🗓️ Prochaine soirée</span
               >
-              <h3 id="next-event-date" class="mb-4 text-2xl font-black md:text-3xl">
+              <h3
+                id="next-event-date"
+                class="mb-4 text-2xl font-black md:text-3xl"
+              >
                 <!-- La date sera automatiquement calculée -->
               </h3>
 
@@ -1151,6 +1023,7 @@
                 class="mr-4 h-12 w-12"
                 width="48"
                 height="48"
+                loading="lazy"
               />
               <h3 class="gradient-text text-2xl font-bold">St-Martin joue</h3>
             </div>
