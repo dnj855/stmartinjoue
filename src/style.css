@@ -1,21 +1,17 @@
 @import 'tailwindcss';
 
 @theme {
-      --color-primary: #FF6B6B; /* rouge moderne */
-      --color-secondary: #4ECDC4; /* turquoise */
-      --color-accent: #FFE66D; /* jaune vif */
-      --color-tertiary: #95E1D3; /* vert menthe */
-      --color-dark: #2C3E50; /* bleu nuit */
-      --color-light: #F8F9FA; /* blanc cassé */
-      --color-gradient-1: #667eea; /* violet */
-      --color-gradient-2: #764ba2; /* purple */
+  --color-gradient-1: #667eea;
+  --color-gradient-2: #764ba2;
+  --color-gradient-3: #ff6b6b;
+  --color-gradient-4: #feca57;
 }
 
-/* Animations personnalisées */
-@keyframes fadeIn {
+/* Core animations */
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -23,86 +19,25 @@
   }
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
   }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+  25% {
+    transform: rotate(-10deg);
   }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
+  75% {
+    transform: rotate(10deg);
   }
 }
 
-/* Classes d'animation */
-.animate-fade-in {
-  animation: fadeIn 1s ease-out forwards;
-}
-
-.animate-fade-in-delay {
-  animation: fadeIn 1s ease-out 0.3s forwards;
-  opacity: 0;
-}
-
-.animate-slide-in {
-  animation: slideIn 0.8s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
-}
-
-/* Effets de survol personnalisés */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Effet de parallaxe pour l'image de fond */
-.parallax-bg {
-  transform: translateZ(-1px) scale(2);
-  z-index: -1;
-}
-
-/* Effet de glassmorphism amélioré */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Animation du texte gradient */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient 3s ease infinite;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.gradient-bg-reverse {
-  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes gradient {
@@ -117,21 +52,6 @@
   }
 }
 
-/* Animation des cartes */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Animation des boutons */
-.button-pulse {
-  animation: pulse 2s infinite;
-}
-
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
@@ -144,7 +64,43 @@
   }
 }
 
-/* Ajout du smooth scroll */
+/* Gradient utilities */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-gradient-1) 0%, var(--color-gradient-2) 50%, var(--color-gradient-3) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 3s ease infinite;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-gradient-1) 0%, var(--color-gradient-2) 100%);
+}
+
+.gradient-bg-reverse {
+  background: linear-gradient(135deg, var(--color-gradient-3) 0%, var(--color-gradient-4) 100%);
+}
+
+/* Animation utilities */
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-wave {
+  animation: wave 1s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.button-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -187,74 +143,9 @@ html {
   height: 300px;
 }
 
-/* Effet de texte moderne */
+/* Text effects */
 .text-shadow-modern {
   text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Animation d'apparition moderne */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-/* Effet de vague */
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-}
-
-.animate-wave {
-  animation: wave 1s ease-in-out infinite;
-  transform-origin: center;
-}
-
-/* Section divider moderne */
-.section-divider {
-  position: relative;
-  margin: 80px 0;
-}
-
-.section-divider::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 2px;
-}
-
-/* Effet de float */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
 }
 
 /* Badge moderne */
@@ -269,7 +160,7 @@ html {
   letter-spacing: 0.5px;
 }
 
-/* Effet néon */
+/* Special effects */
 .neon-glow {
   box-shadow: 0 0 20px rgba(102, 126, 234, 0.5),
               0 0 40px rgba(102, 126, 234, 0.3),
