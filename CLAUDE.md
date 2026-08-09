@@ -4,72 +4,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static website for "St-Martin joue", a board game association in St-Martin-de-l'If, Seine-Maritime, France. The site is built with Vite, styled with Tailwind CSS v4, and deployed on GitHub Pages.
+Static one-page site for "St-Martin joue", a board game association in St-Martin-de-l'If (Seine-Maritime, France). All content is in French. Vite + Tailwind CSS v4, no JS framework, deployed on GitHub Pages.
 
-## Essential Commands
-
-### Development
+## Commands
 
 ```bash
-# Start dev server (opens at http://localhost:5173/index.html)
-pnpm run dev
-
-# Preview production build
-pnpm run preview
+pnpm run dev      # dev server, opens /index.html
+pnpm run build    # → ./dist
+pnpm run preview  # serve the production build
+pnpm run format   # prettier + prettier-plugin-tailwindcss on src/**/*.{html,js,jsx,ts,tsx}
 ```
 
-### Build & Production
+No tests, no linter. `pnpm run build` is the only verification available — run it after non-trivial changes.
 
-```bash
-# Build for production (outputs to ./dist directory)
-pnpm run build
-```
+## Architecture
 
-### Code Formatting
+Everything lives in three files under `src/` (Vite `root` is `src/`, build outputs to `../dist`):
 
-```bash
-# Format HTML and JS files with Prettier + Tailwind CSS plugin
-pnpm run format
-```
+- `index.html` — the entire site. Sections are anchor targets (`#about`, `#events`, `#practical`, `#membership`, `#contact`); the nav links to them, so renaming a section id means updating the nav too. Head carries the SEO/OG meta and canonical `https://stmartinjoue.fr/`.
+- `main.js` — two independent functions, both run on DOM ready:
+  - `initMobileMenu()` — drives the off-canvas nav by toggling the `translate-x-full` Tailwind class on `#main-nav` and `aria-expanded` on `#menu-toggle`. Depends on those ids and on the `.menu-line-1` / `.menu-line-2` children existing in the HTML.
+  - `getNextEventDate()` — computes the club's next session (last Friday of the month, skipping July and August, rolling over after 20h) and writes it into `#next-event-date`. This is the association's actual schedule — change it only if the real schedule changes.
+- `style.css` — Tailwind v4 (`@import 'tailwindcss'` + `@theme` block for the gradient colors; there is no `tailwind.config.js`). Also holds the hand-written keyframes and utility classes (`.gradient-text`, `.modern-card`, `.btn-modern`, `.animate-*`, `.neon-glow`) used throughout `index.html`.
 
-## Architecture & Structure
+`src/public/img/` is served at the site root (`img/logo.png`, etc.).
 
-### Build Configuration
+Membership uses an embedded HelloAsso iframe widget (`#haWidget`) — the head preconnects to `helloasso.com` for it.
 
-- **Vite Config**: Root is set to `src/` directory, build outputs to `../dist`
-- **PostCSS**: Uses Tailwind CSS v4 with automatic `cssnano` optimization in production
-- **Tailwind CSS v4**: Uses the new `@theme` directive for custom properties and native CSS imports
+## Deployment
 
-### Key Files
+`.github/workflows/deploy.yml` builds and publishes `dist/` to GitHub Pages on every push to `main`. There is no staging environment; a merge to `main` is a production deploy.
 
-- `src/index.html` - Single-page website with French content, SEO meta tags, and inline JavaScript for mobile menu
-- `src/style.css` - Tailwind CSS imports, custom theme colors, animations, and utility classes
-- `src/public/` - Static assets (images, favicon) served directly
+## Conventions
 
-### Deployment
-
-- Deployed on GitHub Pages
-- Build command: `pnpm run build`
-- Publish directory: `dist`
-
-## Important Considerations
-
-### Tailwind CSS v4
-
-This project uses Tailwind CSS v4 with the `@tailwindcss/postcss` plugin. Key differences from v3:
-
-- Uses `@import 'tailwindcss'` instead of directives
-- Custom theme values defined with `@theme` block
-- No separate `tailwind.config.js` file needed
-
-### No JavaScript Framework
-
-This is a pure HTML/CSS site with minimal vanilla JavaScript for the mobile menu. The build process doesn't involve any JS framework compilation.
-
-### French Language Site
-
-All content is in French. The site targets a local French audience for a board game association.
-
-### Accessibility
-
-The site includes proper ARIA labels, semantic HTML, and keyboard navigation support for the mobile menu.
+- Keep ARIA labels, semantic sectioning, and keyboard-reachable nav intact — the site was built with accessibility in mind.
+- The README is the upstream starter template's (`vite-tailwind-nojs-starter`), not this project's — ignore it.
