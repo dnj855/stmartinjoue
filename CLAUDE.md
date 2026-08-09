@@ -38,4 +38,5 @@ Membership uses an embedded HelloAsso iframe widget (`#haWidget`) — the head p
 ## Conventions
 
 - Keep ARIA labels, semantic sectioning, and keyboard-reachable nav intact — the site was built with accessibility in mind.
-- The README is the upstream starter template's (`vite-tailwind-nojs-starter`), not this project's — ignore it.
+- `pnpm run format` needs `.prettierrc` to point `tailwindStylesheet` at `src/style.css`. Without it the Tailwind plugin falls back to v3 mode, hunts for a nonexistent `tailwind.config.mjs`, and the script fails.
+- `LICENSE` is the upstream starter's MIT (Kometo Labs) — the project was scaffolded from `vite-tailwind-nojs-starter`. Leave it alone.

@@ -1,19 +1,13 @@
 {
-  "name": "vite-tailwind-starter",
-  "description": "NoJS Vite + Tailwind CSS Starter",
+  "name": "stmartinjoue",
+  "description": "Site de St-Martin joue, association de jeux de société à Saint-Martin-de-l'If",
   "version": "0.0.0",
-  "keywords": [
-    "template",
-    "scaffold",
-    "tailwind",
-    "tailwindcss",
-    "tailwind-css",
-    "vite",
-    "vitejs",
-    "vite-template",
-    "vitejs-template",
-    "vite-tailwind"
-  ],
+  "private": true,
+  "homepage": "https://stmartinjoue.fr/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnj855/stmartinjoue.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
