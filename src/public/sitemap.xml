@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ponytail: une seule page, donc un seul <url>. Mettre lastmod à jour en même
+     temps que l'agenda : c'est le signal de fraîcheur envoyé aux crawlers. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.stmartinjoue.fr/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
