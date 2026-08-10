@@ -1,127 +1,65 @@
-// Mobile menu handling
-function initMobileMenu() {
-  const menuToggle = document.getElementById("menu-toggle");
-  const mainNav = document.getElementById("main-nav");
-  const menuLine1 = menuToggle?.querySelector(".menu-line-1");
-  const menuLine2 = menuToggle?.querySelector(".menu-line-2");
+// La date des soirées vit dans l'agenda du HTML (#agenda [data-date]).
+// Ce script en déduit la carte « prochaine soirée » et le compte à rebours.
 
-  if (!menuToggle || !mainNav) return;
-
-  function toggleMenu(show) {
-    const isExpanded =
-      show ?? menuToggle.getAttribute("aria-expanded") === "true";
-    menuToggle.setAttribute("aria-expanded", !isExpanded);
-
-    menuLine1?.classList.toggle("hidden");
-    menuLine2?.classList.toggle("hidden");
-
-    if (show === false || mainNav.classList.contains("translate-x-full")) {
-      mainNav.classList.remove("translate-x-full");
-    } else {
-      mainNav.classList.add("translate-x-full");
-    }
-  }
-
-  function closeMenu() {
-    mainNav.classList.add("translate-x-full");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuLine1?.classList.remove("hidden");
-    menuLine2?.classList.add("hidden");
-  }
-
-  // Toggle menu on button click
-  menuToggle.addEventListener("click", (event) => {
-    event.stopPropagation();
-    toggleMenu();
-  });
-
-  // Close menu when clicking on links
-  mainNav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (event) => {
-    if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
-      closeMenu();
-    }
-  });
+export function nextSession(dates, now) {
+  return dates.filter((d) => d > now).sort((a, b) => a - b)[0] ?? null;
 }
 
-// Calculate next event date
-function getNextEventDate() {
-  const today = new Date();
-  let currentMonth = today.getMonth();
-  let currentYear = today.getFullYear();
-
-  // Get last Friday of a month
-  function getLastFriday(year, month) {
-    const lastDay = new Date(year, month + 1, 0);
-    const dayOfWeek = lastDay.getDay();
-    const daysToSubtract = (dayOfWeek + 2) % 7;
-    const lastFriday = new Date(lastDay);
-    lastFriday.setDate(lastDay.getDate() - daysToSubtract);
-    return lastFriday;
-  }
-
-  // Find next valid date
-  let nextEventDate = null;
-  let monthsChecked = 0;
-
-  while (!nextEventDate && monthsChecked < 12) {
-    // Skip July (6) and August (7)
-    if (currentMonth === 6 || currentMonth === 7) {
-      currentMonth = (currentMonth + 1) % 12;
-      if (currentMonth === 0) currentYear++;
-      monthsChecked++;
-      continue;
-    }
-
-    const lastFriday = getLastFriday(currentYear, currentMonth);
-
-    // Check if date is in the future or today before 8pm
-    if (
-      lastFriday > today ||
-      (lastFriday.toDateString() === today.toDateString() &&
-        today.getHours() < 20)
-    ) {
-      nextEventDate = lastFriday;
-    } else {
-      currentMonth = (currentMonth + 1) % 12;
-      if (currentMonth === 0) currentYear++;
-    }
-    monthsChecked++;
-  }
-
-  // Format date in French
-  if (nextEventDate) {
-    const options = {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-    };
-    const formatter = new Intl.DateTimeFormat("fr-FR", options);
-    const formattedDate = formatter.format(nextEventDate);
-
-    // Capitalize first letter
-    const capitalizedDate =
-      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-
-    // Update HTML element
-    const dateElement = document.getElementById("next-event-date");
-    if (dateElement) {
-      dateElement.textContent = capitalizedDate + " à 20h";
-    }
-  }
+export function countdown(target, now) {
+  const total = Math.max(0, (target - now) / 1000);
+  const pad = (n) => String(Math.floor(n)).padStart(2, "0");
+  return {
+    d: pad(total / 86400),
+    h: pad((total % 86400) / 3600),
+    m: pad((total % 3600) / 60),
+    s: pad(total % 60),
+  };
 }
 
-// Initialize on DOM ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initMobileMenu();
-    getNextEventDate();
-  });
-} else {
-  initMobileMenu();
-  getNextEventDate();
+function initNextSession() {
+  const dates = [...document.querySelectorAll("#agenda [data-date]")].map(
+    (el) => new Date(el.dataset.date),
+  );
+  const target = nextSession(dates, new Date());
+  // ponytail: agenda périmé → on laisse le contenu statique du HTML tel quel
+  if (!target) return;
+
+  const format = (options) =>
+    new Intl.DateTimeFormat("fr-FR", options).format(target);
+  const weekday = format({ weekday: "long" });
+
+  const dateEl = document.getElementById("next-event-date");
+  if (dateEl) {
+    dateEl.innerHTML = `${weekday[0].toUpperCase()}${weekday.slice(1)}<br>${format(
+      { day: "numeric", month: "long" },
+    )}`;
+  }
+
+  const timeEl = document.getElementById("next-event-time");
+  if (timeEl) {
+    timeEl.textContent = `à partir de ${target.getHours()} h`;
+  }
+
+  const cells = ["d", "h", "m", "s"].map((unit) =>
+    document.getElementById(`cd-${unit}`),
+  );
+  if (cells.some((cell) => !cell)) return;
+
+  const tick = () => {
+    const left = countdown(target, new Date());
+    cells[0].textContent = left.d;
+    cells[1].textContent = left.h;
+    cells[2].textContent = left.m;
+    cells[3].textContent = left.s;
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNextSession);
+  } else {
+    initNextSession();
+  }
 }

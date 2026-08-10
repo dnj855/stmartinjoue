@@ -1,168 +1,71 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-gradient-1: #667eea;
-  --color-gradient-2: #764ba2;
-  --color-gradient-3: #ff6b6b;
-  --color-gradient-4: #feca57;
-}
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-sans: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-/* Core animations */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+  --color-cream: #fbf6ec;
+  --color-ink: #14161f;
+  --color-red: #e8324b;
+  --color-blue: #16a9e0;
+  --color-yellow: #ffc531;
+  --color-green: #7dbb29;
 
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-}
+  --color-night-800: #1d2233;
+  --color-night-700: #242938;
+  --color-night-600: #2c3247;
+  --color-night-500: #4a5170;
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
+  --color-graphite: #3a3e4c;
+  --color-muted: #5b6070;
+  --color-faint: #8e94a6;
+  --color-mist: #a7acbd;
+  --color-fog: #b9bdcb;
+  --color-pale: #e7e9f0;
+  --color-sand: #e3dcce;
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-rise: rise 0.6s ease both;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
-  }
-}
-
-/* Gradient utilities */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-gradient-1) 0%, var(--color-gradient-2) 50%, var(--color-gradient-3) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient 3s ease infinite;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, var(--color-gradient-1) 0%, var(--color-gradient-2) 100%);
-}
-
-.gradient-bg-reverse {
-  background: linear-gradient(135deg, var(--color-gradient-3) 0%, var(--color-gradient-4) 100%);
-}
-
-/* Animation utilities */
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-.animate-wave {
-  animation: wave 1s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.button-pulse {
-  animation: pulse 2s infinite;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Design moderne avec ombres et profondeur */
-.modern-card {
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+body {
+  -webkit-font-smoothing: antialiased;
 }
 
-.modern-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
-}
-
-/* Boutons modernes */
-.btn-modern {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.btn-modern::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.btn-modern:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Text effects */
-.text-shadow-modern {
-  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Badge moderne */
-.badge-modern {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Special effects */
-.neon-glow {
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5),
-              0 0 40px rgba(102, 126, 234, 0.3),
-              0 0 60px rgba(102, 126, 234, 0.1);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
