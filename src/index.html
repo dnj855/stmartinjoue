@@ -195,7 +195,7 @@
         role="banner"
       >
         <div
-          class="mx-auto flex max-w-[1180px] flex-wrap items-center gap-5 px-6 py-3"
+          class="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-5 gap-y-3 px-6 py-3"
         >
           <a
             href="#top"
@@ -215,7 +215,7 @@
             >
           </a>
           <nav
-            class="ml-auto flex flex-wrap gap-x-[26px] gap-y-2 text-[15px] font-medium"
+            class="order-last flex w-full flex-wrap gap-x-[26px] gap-y-2 text-[15px] font-medium lg:order-none lg:ml-auto lg:w-auto"
             aria-label="Navigation principale"
           >
             <a
@@ -251,7 +251,7 @@
           </nav>
           <a
             href="#agenda"
-            class="flex-none rounded-full bg-ink px-[18px] py-[11px] text-sm font-semibold text-cream transition hover:bg-red hover:text-white"
+            class="ml-auto flex-none rounded-full bg-ink px-[18px] py-[11px] text-sm font-semibold text-cream transition hover:bg-red hover:text-white lg:ml-0"
             >Venir vendredi</a
           >
         </div>
@@ -272,15 +272,24 @@
           >
             <div class="min-w-0 flex-[1_1_520px] animate-rise">
               <p
-                class="inline-flex items-center gap-[9px] rounded-full border-[1.5px] border-ink px-[15px] py-[7px] font-mono text-[13px] font-semibold tracking-[.06em] uppercase"
+                class="inline-flex items-start gap-[9px] rounded-full border-[1.5px] border-ink px-[15px] py-[7px] font-mono text-[13px] font-semibold tracking-[.06em] uppercase"
               >
-                <span class="block h-[9px] w-[9px] rounded-full bg-red"></span>
-                Jeux de société · Saint-Martin-de-l'If
+                <span
+                  class="mt-[5px] block h-[9px] w-[9px] flex-none rounded-full bg-red"
+                ></span>
+                <span
+                  >Jeux de société ·
+                  <span class="whitespace-nowrap"
+                    >Saint-Martin-de-l'If</span
+                  ></span
+                >
               </p>
               <h1
                 class="mt-[26px] font-display text-[clamp(48px,6.4vw,92px)] leading-[.92] font-extrabold tracking-[-.035em]"
               >
-                Le dernier vendredi<br />du mois, on sort<br />
+                Le dernier vendredi <br class="hidden sm:inline" />du mois, on
+                sort<br class="hidden sm:inline" />
+
                 <span
                   class="bg-[linear-gradient(180deg,transparent_62%,#FFC531_62%,#FFC531_96%,transparent_96%)] px-1"
                   >les jeux.</span
@@ -316,7 +325,7 @@
                     jeux dans la ludothèque
                   </div>
                 </div>
-                <div class="w-[1.5px] bg-ink opacity-20"></div>
+                <div class="hidden w-[1.5px] bg-ink opacity-20 sm:block"></div>
                 <div>
                   <div
                     class="font-display text-[38px] leading-none font-extrabold"
@@ -325,7 +334,7 @@
                   </div>
                   <div class="mt-0.5 text-sm text-muted">soirées par an</div>
                 </div>
-                <div class="w-[1.5px] bg-ink opacity-20"></div>
+                <div class="hidden w-[1.5px] bg-ink opacity-20 sm:block"></div>
                 <div>
                   <div
                     class="font-display text-[38px] leading-none font-extrabold"
@@ -340,7 +349,7 @@
             </div>
 
             <div
-              class="relative mx-auto max-w-[420px] min-w-0 flex-[1_1_330px] animate-rise [animation-delay:.1s]"
+              class="relative mx-auto max-w-[420px] min-w-0 flex-[1_1_330px] animate-rise pb-16 [animation-delay:.1s]"
             >
               <div
                 class="rotate-[1.4deg] rounded-[22px] bg-ink px-7 pt-[30px] pb-[26px] text-cream"
@@ -352,7 +361,7 @@
                 </div>
                 <p
                   id="next-event-date"
-                  class="mt-3.5 font-display text-[52px] leading-[.95] font-extrabold tracking-[-.03em]"
+                  class="mt-3.5 font-display text-[clamp(38px,9vw,52px)] leading-[.95] font-extrabold tracking-[-.03em]"
                 >
                   Vendredi<br />25 septembre
                 </p>
@@ -425,7 +434,7 @@
                 </p>
               </div>
               <div
-                class="absolute -top-[18px] -left-1.5 rotate-[-8deg] rounded-full bg-red px-4 py-2.5 font-display text-[15px] font-extrabold text-white"
+                class="absolute -top-[30px] -left-1.5 rotate-[-8deg] rounded-full bg-red px-4 py-2.5 font-display text-[15px] font-extrabold text-white"
               >
                 1<sup>re</sup> fois&nbsp;: gratuit
               </div>
@@ -463,12 +472,16 @@
           </div>
         </div>
 
-        <section id="comment" class="mx-auto max-w-[1180px] px-6 py-24">
+        <section
+          id="comment"
+          class="mx-auto max-w-[1180px] px-6 py-16 sm:py-24"
+        >
           <div class="flex flex-wrap items-end justify-between gap-8">
             <h2
               class="m-0 max-w-[640px] font-display text-[clamp(36px,4.4vw,60px)] leading-none font-extrabold tracking-[-.03em]"
             >
-              Jamais mis les pieds<br />dans un club de jeux&nbsp;?
+              Jamais mis les pieds <br class="hidden sm:inline" />dans un club
+              de jeux&nbsp;?
             </h2>
             <p class="m-0 max-w-[340px] text-[17px] text-muted">
               C'est exactement pour vous qu'on écrit ça. Une soirée, trois
@@ -476,7 +489,7 @@
             </p>
           </div>
           <div
-            class="mt-12 grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-5"
+            class="mt-12 grid [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-5"
           >
             <div
               class="rounded-[20px] border-[1.5px] border-ink bg-white p-[30px] transition hover:-translate-y-1"
@@ -535,7 +548,7 @@
           </div>
         </section>
 
-        <section id="jeux" class="bg-ink px-6 py-24 text-cream">
+        <section id="jeux" class="bg-ink px-6 py-16 text-cream sm:py-24">
           <div class="mx-auto max-w-[1180px]">
             <p class="font-mono text-xs tracking-[.16em] text-yellow uppercase">
               La ludothèque
@@ -546,7 +559,7 @@
               Plus de 100 jeux, rangés par humeur.
             </h2>
             <div
-              class="mt-12 grid [grid-template-columns:repeat(auto-fit,minmax(224px,1fr))] gap-[18px]"
+              class="mt-12 grid grid-cols-1 gap-[18px] sm:grid-cols-2 lg:grid-cols-4"
             >
               <div
                 class="flex min-h-[250px] flex-col rounded-[20px] border-[1.5px] border-night-600 bg-night-800 p-[26px] transition hover:border-night-500"
@@ -734,9 +747,9 @@
           </div>
         </section>
 
-        <section id="agenda" class="mx-auto max-w-[1180px] px-6 py-24">
+        <section id="agenda" class="mx-auto max-w-[1180px] px-6 py-16 sm:py-24">
           <div
-            class="grid [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))] items-start gap-14"
+            class="grid [grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))] items-start gap-10 sm:gap-14"
           >
             <div class="sticky top-[110px]">
               <p class="font-mono text-xs tracking-[.16em] text-red uppercase">
@@ -794,14 +807,14 @@
               <ul class="m-0 list-none p-0">
                 <li
                   data-date="2026-09-25T20:00"
-                  class="mb-3.5 flex items-center gap-6 rounded-[18px] border-[1.5px] border-ink bg-yellow p-[26px] transition hover:translate-x-1.5"
+                  class="mb-3.5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-[18px] border-[1.5px] border-ink bg-yellow p-5 transition hover:translate-x-1.5 sm:gap-x-6 sm:p-[26px]"
                 >
                   <div
                     class="min-w-[72px] font-display text-[44px] leading-[.9] font-extrabold tracking-[-.03em]"
                   >
                     25
                   </div>
-                  <div class="flex-1">
+                  <div class="min-w-[150px] flex-1">
                     <div
                       class="font-display text-xl font-bold tracking-[-.02em]"
                     >
@@ -819,14 +832,14 @@
                 </li>
                 <li
                   data-date="2026-10-16T20:00"
-                  class="mb-3.5 flex items-center gap-6 rounded-[18px] border-[1.5px] border-ink bg-white p-[26px] transition hover:translate-x-1.5"
+                  class="mb-3.5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-[18px] border-[1.5px] border-ink bg-white p-5 transition hover:translate-x-1.5 sm:gap-x-6 sm:p-[26px]"
                 >
                   <div
                     class="min-w-[72px] font-display text-[44px] leading-[.9] font-extrabold tracking-[-.03em]"
                   >
                     16
                   </div>
-                  <div class="flex-1">
+                  <div class="min-w-[150px] flex-1">
                     <div
                       class="font-display text-xl font-bold tracking-[-.02em]"
                     >
@@ -843,14 +856,14 @@
                 </li>
                 <li
                   data-date="2026-11-27T20:00"
-                  class="mb-3.5 flex items-center gap-6 rounded-[18px] border-[1.5px] border-ink bg-white p-[26px] transition hover:translate-x-1.5"
+                  class="mb-3.5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-[18px] border-[1.5px] border-ink bg-white p-5 transition hover:translate-x-1.5 sm:gap-x-6 sm:p-[26px]"
                 >
                   <div
                     class="min-w-[72px] font-display text-[44px] leading-[.9] font-extrabold tracking-[-.03em]"
                   >
                     27
                   </div>
-                  <div class="flex-1">
+                  <div class="min-w-[150px] flex-1">
                     <div
                       class="font-display text-xl font-bold tracking-[-.02em]"
                     >
@@ -867,14 +880,14 @@
                 </li>
                 <li
                   data-date="2026-12-18T20:00"
-                  class="mb-3.5 flex items-center gap-6 rounded-[18px] border-[1.5px] border-ink bg-white p-[26px] transition hover:translate-x-1.5"
+                  class="mb-3.5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-[18px] border-[1.5px] border-ink bg-white p-5 transition hover:translate-x-1.5 sm:gap-x-6 sm:p-[26px]"
                 >
                   <div
                     class="min-w-[72px] font-display text-[44px] leading-[.9] font-extrabold tracking-[-.03em]"
                   >
                     18
                   </div>
-                  <div class="flex-1">
+                  <div class="min-w-[150px] flex-1">
                     <div
                       class="font-display text-xl font-bold tracking-[-.02em]"
                     >
@@ -891,14 +904,14 @@
                 </li>
                 <li
                   data-date="2027-01-29T20:00"
-                  class="mb-3.5 flex items-center gap-6 rounded-[18px] border-[1.5px] border-ink bg-white p-[26px] transition hover:translate-x-1.5"
+                  class="mb-3.5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-[18px] border-[1.5px] border-ink bg-white p-5 transition hover:translate-x-1.5 sm:gap-x-6 sm:p-[26px]"
                 >
                   <div
                     class="min-w-[72px] font-display text-[44px] leading-[.9] font-extrabold tracking-[-.03em]"
                   >
                     29
                   </div>
-                  <div class="flex-1">
+                  <div class="min-w-[150px] flex-1">
                     <div
                       class="font-display text-xl font-bold tracking-[-.02em]"
                     >
@@ -923,11 +936,14 @@
           </div>
         </section>
 
-        <section id="adhesion" class="mx-auto max-w-[1180px] px-6 pb-24">
+        <section
+          id="adhesion"
+          class="mx-auto max-w-[1180px] px-6 pb-16 sm:pb-24"
+        >
           <div
-            class="grid [grid-template-columns:repeat(auto-fit,minmax(330px,1fr))] overflow-hidden rounded-[26px] border-[1.5px] border-ink"
+            class="grid [grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr))] overflow-hidden rounded-[26px] border-[1.5px] border-ink"
           >
-            <div class="bg-blue px-12 py-[52px] text-white">
+            <div class="bg-blue px-7 py-10 text-white sm:px-12 sm:py-[52px]">
               <p
                 class="font-mono text-xs tracking-[.16em] uppercase opacity-85"
               >
@@ -955,9 +971,9 @@
                 Paiement sécurisé · Association loi 1901
               </p>
             </div>
-            <div class="bg-white px-12 py-[52px]">
+            <div class="bg-white px-7 py-10 sm:px-12 sm:py-[52px]">
               <h2
-                class="mt-0 mb-[26px] font-display text-[34px] font-extrabold tracking-[-.03em]"
+                class="mt-0 mb-[26px] font-display text-[34px] leading-[1.05] font-extrabold tracking-[-.03em]"
               >
                 Ce que ça vous ouvre
               </h2>
@@ -1109,7 +1125,7 @@
         <!-- de dupliquer les onze questions dans un second bloc JSON-LD. -->
         <section
           id="faq"
-          class="mx-auto max-w-[1180px] px-6 pb-24"
+          class="mx-auto max-w-[1180px] px-6 pb-16 sm:pb-24"
           itemscope
           itemtype="https://schema.org/FAQPage"
         >
@@ -1497,7 +1513,7 @@
           </div>
         </section>
 
-        <section id="contact" class="bg-ink px-6 pt-24 text-cream">
+        <section id="contact" class="bg-ink px-6 pt-16 text-cream sm:pt-24">
           <div class="mx-auto max-w-[1180px]">
             <h2
               class="m-0 max-w-[900px] font-display text-[clamp(44px,7vw,104px)] leading-[.92] font-extrabold tracking-[-.04em]"
@@ -1505,7 +1521,7 @@
               À vos dés, prêts,<br /><span class="text-yellow">jouez.</span>
             </h2>
             <div
-              class="mt-[52px] grid [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))] gap-[18px]"
+              class="mt-[52px] grid [grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-[18px]"
             >
               <a
                 href="mailto:stmartinjoue@gmail.com"
@@ -1572,7 +1588,7 @@
                 St-Martin joue, association loi 1901 de jeux de société à
                 Saint-Martin-de-l'If (76190), en Seine-Maritime.
               </div>
-              <div class="ml-auto text-sm text-faint">
+              <div class="text-sm text-faint md:ml-auto">
                 © 2026 St-Martin joue
               </div>
             </footer>
