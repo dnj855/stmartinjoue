@@ -14,48 +14,178 @@
       rel="stylesheet"
     />
     <!-- SEO Meta Tags -->
+    <!-- L'apex stmartinjoue.fr redirige (301) vers www : les URL absolues -->
+    <!-- ci-dessous restent sur www, sinon canonical et redirection se contredisent. -->
     <meta
       name="description"
-      content="St-Martin joue - Association de jeux de société à Saint Martin de l'If (Seine-Maritime). Soirées jeux le dernier vendredi du mois, première soirée gratuite, adhésion 20 € par an."
-    />
-    <meta
-      name="keywords"
-      content="jeux de société, association jeux, Saint Martin de l'If, soirées jeux, jeux de société Seine-Maritime, club de jeux"
+      content="Association de jeux de société à Saint-Martin-de-l'If (Seine-Maritime) : soirée ouverte à tous le dernier vendredi du mois à partir de 20 h. Première soirée gratuite, adhésion 20 € par an."
     />
     <meta name="author" content="St-Martin joue" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#fbf6ec" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://stmartinjoue.fr/" />
+    <meta property="og:site_name" content="St-Martin joue" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://www.stmartinjoue.fr/" />
     <meta
       property="og:title"
-      content="St-Martin joue - Soirées jeux de société à Saint Martin de l'If"
+      content="Soirées jeux de société à Saint-Martin-de-l'If — St-Martin joue"
     />
     <meta
       property="og:description"
-      content="Rejoignez notre association de jeux de société pour des soirées conviviales mensuelles à Saint Martin de l'If. Tous les âges, tous les niveaux !"
+      content="Une soirée jeux le dernier vendredi du mois à Saint-Martin-de-l'If (76). Plus de 100 jeux, règles expliquées, première soirée gratuite."
     />
-    <meta property="og:image" content="/img/header.webp" />
+    <meta
+      property="og:image"
+      content="https://www.stmartinjoue.fr/img/header.webp"
+    />
+    <meta
+      property="og:image:alt"
+      content="Soirée jeux de société de l'association St-Martin joue"
+    />
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://stmartinjoue.fr/" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
-      property="twitter:title"
-      content="St-Martin joue - Soirées jeux de société à Saint Martin de l'If"
+      name="twitter:title"
+      content="Soirées jeux de société à Saint-Martin-de-l'If — St-Martin joue"
     />
     <meta
-      property="twitter:description"
-      content="Rejoignez notre association de jeux de société pour des soirées conviviales mensuelles à Saint Martin de l'If. Tous les âges, tous les niveaux !"
+      name="twitter:description"
+      content="Une soirée jeux le dernier vendredi du mois à Saint-Martin-de-l'If (76). Plus de 100 jeux, règles expliquées, première soirée gratuite."
     />
-    <meta property="twitter:image" content="/img/header.webp" />
+    <meta
+      name="twitter:image"
+      content="https://www.stmartinjoue.fr/img/header.webp"
+    />
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stmartinjoue.fr/" />
+    <link rel="canonical" href="https://www.stmartinjoue.fr/" />
     <link rel="stylesheet" href="/style.css" />
     <script type="module" src="/main.js" defer></script>
     <title>
-      St-Martin joue - Soirées jeux de société à Saint Martin de l'If
-      (Seine-Maritime)
+      Soirées jeux de société à Saint-Martin-de-l'If (76) — St-Martin joue
     </title>
+
+    <!-- Données structurées. Les startDate dupliquent les data-date de #agenda : -->
+    <!-- main.test.js échoue si les deux listes divergent. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": ["Organization", "NGO"],
+            "@id": "https://www.stmartinjoue.fr/#organisation",
+            "name": "St-Martin joue",
+            "description": "Association loi 1901 de jeux de société à Saint-Martin-de-l'If (Seine-Maritime). Une soirée jeux ouverte à tous le dernier vendredi du mois, à partir de 20 h.",
+            "url": "https://www.stmartinjoue.fr/",
+            "logo": "https://www.stmartinjoue.fr/img/logo.png",
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "email": "stmartinjoue@gmail.com",
+            "telephone": "+33688144084",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "areaServed": [
+              { "@type": "AdministrativeArea", "name": "Saint-Martin-de-l'If" },
+              { "@type": "AdministrativeArea", "name": "Seine-Maritime" }
+            ],
+            "sameAs": [
+              "https://www.facebook.com/stmartinjoue",
+              "https://www.helloasso.com/associations/st-martin-joue",
+              "https://www.myludo.fr/#!/profil/cedric-lang-roth-9654"
+            ],
+            "makesOffer": {
+              "@type": "Offer",
+              "name": "Adhésion annuelle",
+              "price": "20",
+              "priceCurrency": "EUR",
+              "url": "https://www.helloasso.com/associations/st-martin-joue/adhesions/adhesion",
+              "description": "20 € par personne et par an : accès à toutes les soirées et emprunt de jeux. La première soirée est gratuite."
+            }
+          },
+          {
+            "@type": "Place",
+            "@id": "https://www.stmartinjoue.fr/#salle",
+            "name": "Salle de la résidence pour personnes âgées",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Route de Croix-Mare",
+              "addressLocality": "Saint-Martin-de-l'If",
+              "postalCode": "76190",
+              "addressRegion": "Normandie",
+              "addressCountry": "FR"
+            },
+            "hasMap": "https://maps.app.goo.gl/hkX8WuDMaqcm7wFn6"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.stmartinjoue.fr/#site",
+            "url": "https://www.stmartinjoue.fr/",
+            "name": "St-Martin joue",
+            "inLanguage": "fr-FR",
+            "publisher": { "@id": "https://www.stmartinjoue.fr/#organisation" }
+          },
+          {
+            "@type": "Event",
+            "name": "Soirée jeux de société — St-Martin joue",
+            "description": "Soirée de rentrée, avec une table découverte pour les nouveaux.",
+            "startDate": "2026-09-25T20:00:00+02:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "organizer": { "@id": "https://www.stmartinjoue.fr/#organisation" },
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "url": "https://www.stmartinjoue.fr/#agenda"
+          },
+          {
+            "@type": "Event",
+            "name": "Soirée jeux de société — St-Martin joue",
+            "description": "Soirée avancée avant les vacances de la Toussaint.",
+            "startDate": "2026-10-16T20:00:00+02:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "organizer": { "@id": "https://www.stmartinjoue.fr/#organisation" },
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "url": "https://www.stmartinjoue.fr/#agenda"
+          },
+          {
+            "@type": "Event",
+            "name": "Soirée jeux de société — St-Martin joue",
+            "description": "Soirée spéciale jeux d'ambiance.",
+            "startDate": "2026-11-27T20:00:00+01:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "organizer": { "@id": "https://www.stmartinjoue.fr/#organisation" },
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "url": "https://www.stmartinjoue.fr/#agenda"
+          },
+          {
+            "@type": "Event",
+            "name": "Soirée jeux de société — St-Martin joue",
+            "description": "Soirée avancée d'une semaine pour Noël, ambiance festive.",
+            "startDate": "2026-12-18T20:00:00+01:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "organizer": { "@id": "https://www.stmartinjoue.fr/#organisation" },
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "url": "https://www.stmartinjoue.fr/#agenda"
+          },
+          {
+            "@type": "Event",
+            "name": "Soirée jeux de société — St-Martin joue",
+            "description": "Reprise de l'année, nouveautés sur les tables.",
+            "startDate": "2027-01-29T20:00:00+01:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": { "@id": "https://www.stmartinjoue.fr/#salle" },
+            "organizer": { "@id": "https://www.stmartinjoue.fr/#organisation" },
+            "image": "https://www.stmartinjoue.fr/img/header.webp",
+            "url": "https://www.stmartinjoue.fr/#agenda"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body class="bg-cream font-sans text-ink">
@@ -109,6 +239,11 @@
               >Adhésion</a
             >
             <a
+              href="#faq"
+              class="border-b-2 border-transparent hover:border-red"
+              >Questions</a
+            >
+            <a
               href="#contact"
               class="border-b-2 border-transparent hover:border-red"
               >Contact</a
@@ -140,7 +275,7 @@
                 class="inline-flex items-center gap-[9px] rounded-full border-[1.5px] border-ink px-[15px] py-[7px] font-mono text-[13px] font-semibold tracking-[.06em] uppercase"
               >
                 <span class="block h-[9px] w-[9px] rounded-full bg-red"></span>
-                Association ludique · Saint Martin de l'If
+                Jeux de société · Saint-Martin-de-l'If
               </p>
               <h1
                 class="mt-[26px] font-display text-[clamp(48px,6.4vw,92px)] leading-[.92] font-extrabold tracking-[-.035em]"
@@ -154,9 +289,9 @@
               <p
                 class="mt-[26px] max-w-[520px] text-xl leading-[1.5] text-graphite"
               >
-                Une salle, cent jeux, personne qui juge. Vous arrivez seul, à
-                deux ou en famille&nbsp;: on vous trouve une table et on vous
-                explique les règles.
+                Une salle, cent jeux de société, personne qui juge. Vous arrivez
+                seul, à deux ou en famille&nbsp;: on vous trouve une table et on
+                vous explique les règles.
               </p>
               <div class="mt-[34px] flex flex-wrap gap-3.5">
                 <a
@@ -248,7 +383,7 @@
                     class="text-[15px] leading-[1.45] text-pale not-italic"
                   >
                     Salle de la résidence pour personnes âgées<br />Route de
-                    Croix-Mare, Saint Martin de l'If (76)
+                    Croix-Mare, 76190 Saint-Martin-de-l'If
                   </address>
                 </div>
                 <div
@@ -969,6 +1104,399 @@
           </div>
         </section>
 
+        <!-- FAQ : réponses courtes et autonomes, pensées pour l'extraction par -->
+        <!-- les moteurs de réponse. Balisage FAQPage en microdata, pour éviter -->
+        <!-- de dupliquer les onze questions dans un second bloc JSON-LD. -->
+        <section
+          id="faq"
+          class="mx-auto max-w-[1180px] px-6 pb-24"
+          itemscope
+          itemtype="https://schema.org/FAQPage"
+        >
+          <div class="flex flex-wrap items-end justify-between gap-8">
+            <h2
+              class="m-0 max-w-[640px] font-display text-[clamp(36px,4.4vw,60px)] leading-none font-extrabold tracking-[-.03em]"
+            >
+              Les questions<br />qu'on nous pose.
+            </h2>
+            <p class="m-0 max-w-[340px] text-[17px] text-muted">
+              Tout ce qu'il faut savoir avant de pousser la porte, un vendredi
+              soir.
+            </p>
+          </div>
+          <div class="mt-12 flex max-w-[860px] flex-col gap-3.5">
+            <details
+              id="faq-lieu"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Où ont lieu les soirées jeux de St-Martin joue&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Les soirées se tiennent salle de la résidence pour personnes
+                  âgées, route de Croix-Mare, à Saint-Martin-de-l'If (76190), en
+                  Seine-Maritime. L'itinéraire est disponible sur Google Maps
+                  depuis la section Agenda.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-quand"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Quand ont lieu les soirées jeux&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  St-Martin joue organise une soirée jeux le dernier vendredi de
+                  chaque mois, à partir de 20 h. Quand cette date tombe pendant
+                  les vacances scolaires, la soirée est avancée. Cela représente
+                  une dizaine de soirées par an.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-prix"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Combien coûte une soirée jeux&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  La première soirée est gratuite et sans engagement. Ensuite,
+                  l'adhésion annuelle coûte 20 € par personne et donne accès à
+                  toutes les soirées de l'année ainsi qu'à l'emprunt de jeux.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-inscription"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Faut-il s'inscrire ou réserver pour venir&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Aucune inscription n'est nécessaire&nbsp;: il suffit de
+                  pousser la porte à partir de 20 h. Prévenir par e-mail ou par
+                  téléphone aide simplement l'association à sortir assez de
+                  tables.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-debutant"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Faut-il déjà connaître les jeux de société&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Non. Les règles sont expliquées à voix haute à chaque table et
+                  quelqu'un vient vous accueillir dès votre arrivée. Les soirées
+                  accueillent aussi bien les débutants complets que les joueurs
+                  habitués.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-famille"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Peut-on venir avec des enfants&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Oui. Les soirées sont ouvertes de 7 à 77 ans et la ludothèque
+                  contient des jeux familiaux accessibles dès 8 ans, jouables à
+                  2 à 6 joueurs en 30 à 45 minutes.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-seul"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Peut-on venir seul, sans connaître personne&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Oui. Vous pouvez arriver seul, à deux ou en famille&nbsp;:
+                  quelqu'un vient vous voir dans la minute et vous installe à
+                  une table selon l'envie du moment. Personne ne juge le niveau.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-ludotheque"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Combien de jeux compte la ludothèque&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  La ludothèque de St-Martin joue réunit plus de 100 jeux de
+                  société, classés par humeur&nbsp;: ambiance, familiaux,
+                  stratégie et nouveautés. Le catalogue complet est consultable
+                  sur MyLudo.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-emprunt"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Peut-on emprunter un jeu de la ludothèque&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Oui, l'emprunt de jeux est réservé aux membres à jour de leur
+                  adhésion. Vous repartez avec un jeu de la ludothèque entre
+                  deux soirées.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-adhesion"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Comment adhérer à St-Martin joue&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  L'adhésion se règle en ligne via HelloAsso, en paiement
+                  sécurisé, depuis le formulaire de cette page. St-Martin joue
+                  est une association loi 1901 et l'adhésion coûte 20 € par
+                  personne et par an.
+                </p>
+              </div>
+            </details>
+            <details
+              id="faq-contact"
+              class="group rounded-[20px] border-[1.5px] border-ink bg-white p-[26px]"
+              itemscope
+              itemprop="mainEntity"
+              itemtype="https://schema.org/Question"
+            >
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[20px] font-bold tracking-[-.02em] [&::-webkit-details-marker]:hidden"
+                itemprop="name"
+              >
+                Comment contacter l'association&nbsp;?
+                <span
+                  class="font-display text-[26px] leading-none text-red transition group-open:rotate-45"
+                  aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <div
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p
+                  class="mt-3 mb-0 text-base leading-[1.6] text-graphite"
+                  itemprop="text"
+                >
+                  Par e-mail à stmartinjoue@gmail.com, par téléphone au 06 88 14
+                  40 84, ou via la page Facebook St-Martin joue. Les changements
+                  de date sont annoncés sur Facebook.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
         <section id="contact" class="bg-ink px-6 pt-24 text-cream">
           <div class="mx-auto max-w-[1180px]">
             <h2
@@ -1041,8 +1569,8 @@
                 />
               </div>
               <div class="max-w-[380px] text-[15px] leading-[1.5] text-mist">
-                St-Martin joue, association loi 1901 de jeux de société à Saint
-                Martin de l'If (Seine-Maritime).
+                St-Martin joue, association loi 1901 de jeux de société à
+                Saint-Martin-de-l'If (76190), en Seine-Maritime.
               </div>
               <div class="ml-auto text-sm text-faint">
                 © 2026 St-Martin joue

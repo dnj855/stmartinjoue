@@ -1,5 +1,6 @@
 // node src/main.test.js
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { countdown, nextSession } from "./main.js";
 
 const now = new Date("2026-09-20T12:00:00");
@@ -23,5 +24,16 @@ assert.deepEqual(countdown(now, new Date("2027-01-01")), {
   m: "00",
   s: "00",
 });
+
+// Les dates vivent à deux endroits : les data-date de #agenda (lus par main.js)
+// et les startDate du JSON-LD (lus par Google). Ce test empêche la dérive.
+const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
+const grab = (re) => [...html.matchAll(re)].map((m) => m[1]);
+assert.deepEqual(
+  grab(/data-date="([^"]+)"/g),
+  // on ignore le fuseau : seul le couple date + heure doit correspondre
+  grab(/"startDate": "([^"+]+)/g).map((d) => d.slice(0, 16)),
+  "les startDate du JSON-LD ne correspondent plus aux data-date de #agenda",
+);
 
 console.log("ok");
