@@ -36,4 +36,23 @@ assert.deepEqual(
   "les startDate du JSON-LD ne correspondent plus aux data-date de #agenda",
 );
 
+// main.js surligne la prochaine soirée via classList.replace("bg-white","bg-yellow")
+// et réécrit l'unique <span> du <li> en badge « Prochaine » : ces hypothèses doivent tenir.
+const lis = [...html.matchAll(/<li\s+data-date="[^"]+"([\s\S]*?)<\/li>/g)].map(
+  (m) => m[1],
+);
+assert.equal(lis.length, grab(/data-date="([^"]+)"/g).length);
+for (const li of lis) {
+  assert.match(
+    li,
+    /\bbg-white\b/,
+    "un <li> d'agenda n'a pas la classe bg-white",
+  );
+  assert.equal(
+    [...li.matchAll(/<span\b/g)].length,
+    1,
+    "un <li> d'agenda n'a pas exactement un <span> (le badge)",
+  );
+}
+
 console.log("ok");

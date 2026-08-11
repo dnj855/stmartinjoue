@@ -1,6 +1,11 @@
 // La date des soirées vit dans l'agenda du HTML (#agenda [data-date]).
 // Ce script en déduit la carte « prochaine soirée » et le compte à rebours.
 
+// Une soirée commence à 20 h et reste « en cours » un moment : on ne bascule sur
+// la date suivante qu'après ce délai. 3 h → bascule à 23 h. Seul bouton à tourner
+// si les soirées s'allongent ou raccourcissent.
+const EN_COURS_MS = 3 * 60 * 60 * 1000;
+
 export function nextSession(dates, now) {
   return dates.filter((d) => d > now).sort((a, b) => a - b)[0] ?? null;
 }
@@ -17,12 +22,21 @@ export function countdown(target, now) {
 }
 
 function initNextSession() {
-  const dates = [...document.querySelectorAll("#agenda [data-date]")].map(
-    (el) => new Date(el.dataset.date),
-  );
-  const target = nextSession(dates, new Date());
-  // ponytail: agenda périmé → on laisse le contenu statique du HTML tel quel
+  const items = [...document.querySelectorAll("#agenda [data-date]")];
+  const dates = items.map((el) => new Date(el.dataset.date));
+  const cutoff = new Date(Date.now() - EN_COURS_MS);
+  const target = nextSession(dates, cutoff);
+  // ponytail: agenda périmé → on laisse le contenu statique du HTML tel quel,
+  // soirées passées comprises : mieux vaut une liste datée qu'une liste vide
   if (!target) return;
+
+  // Soirées passées retirées de la liste, surlignage + badge sur la prochaine
+  items.forEach((el, i) => {
+    if (dates[i] < cutoff) el.remove();
+  });
+  const li = items[dates.findIndex((d) => +d === +target)];
+  li.classList.replace("bg-white", "bg-yellow");
+  li.querySelector("span").textContent = "Prochaine";
 
   const format = (options) =>
     new Intl.DateTimeFormat("fr-FR", options).format(target);
